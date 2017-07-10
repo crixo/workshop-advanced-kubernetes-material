@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: mongodb
+  name: mongo
+spec:
+  replicas: 1
+  # strategy used to replace old pods by new ones.
+  strategy:
+    type: Recreate # All existing pods are killed before creating new ones
+  template:
+    metadata:
+      labels:
+        app: mongodb
+      name: mongodb
+    spec:
+      containers:
+      - name: mongo
+        image: mongo:3.0.15
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - mountPath: /data/db
+          name: kubeprimer-db
+      restartPolicy: Always
+      volumes:
+      - name: kubeprimer-db
+        persistentVolumeClaim:
+          claimName: kubeprimer-db

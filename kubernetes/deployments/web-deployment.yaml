@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: web
+  name: web
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - env:
+        - name: BACKEND_HOST
+          value: backend
+        image: sighup/kubeprimer-web
+        name: web
+        ports:
+        - containerPort: 80
+      restartPolicy: Always
