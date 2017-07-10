@@ -2,8 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    app: mongodb
-  name: mongo
+    app: powerapp-mongodb
+  name: powerapp-mongodb
 spec:
   replicas: 1
   # strategy used to replace old pods by new ones.
@@ -12,19 +12,19 @@ spec:
   template:
     metadata:
       labels:
-        app: mongodb
-      name: mongodb
+        app: powerapp-mongodb
+      name: powerapp-mongodb
     spec:
       containers:
-      - name: mongo
+      - name: powerapp-mongo
         image: mongo:3.0.15
         ports:
         - containerPort: 27017
         volumeMounts:
         - mountPath: /data/db
-          name: kubeprimer-db
+          name: db-data
       restartPolicy: Always
       volumes:
-      - name: kubeprimer-db
+      - name: db-data
         persistentVolumeClaim:
-          claimName: kubeprimer-db
+          claimName: powerapp-db-volume

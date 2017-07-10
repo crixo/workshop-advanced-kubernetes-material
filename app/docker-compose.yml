@@ -5,20 +5,20 @@ version: "2"
 services:
 
   web:
-    image: "kubeprimer-web"
+    image: "sighup/kubeprimer-web"
     build:
       context: ./web
     environment:
       - "BACKEND_HOST=backend"
     ports:
-     - "8080:80"
+     - "80:80"
     links:
       - "backend"
     networks:
       - "kubeprimer"
 
   backend:
-    image: "kubeprimer-backend"
+    image: "sighup/kubeprimer-backend"
     build:
       context: ./backend
     environment:

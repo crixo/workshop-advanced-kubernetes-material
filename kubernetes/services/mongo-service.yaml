@@ -3,12 +3,12 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: mongo
-  name: mongodb
+    app: powerapp-mongodb-service
+  name: powerapp-mongodb-service
 spec:
   ports:
   - port: 27017
     targetPort: 27017
     protocol: TCP
   selector:
-    app: mongodb
+    app: powerapp-mongodb

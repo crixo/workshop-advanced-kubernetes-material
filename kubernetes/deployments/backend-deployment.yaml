@@ -2,19 +2,19 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    app: backend
-  name: backend
+    app: powerapp-backend
+  name: powerapp-backend
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: backend
+        app: powerapp-backend
     spec:
       containers:
-      - name: backend
+      - name: powerapp-backend
         env:
         - name: MONGO_HOST
-          value: mongodb
+          value: powerapp-mongodb-service
         image: sighup/kubeprimer-backend
       restartPolicy: Always

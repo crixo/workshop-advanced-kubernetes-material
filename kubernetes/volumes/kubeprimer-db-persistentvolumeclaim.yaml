@@ -1,10 +1,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  creationTimestamp: null
   labels:
-    app: kubeprimer-db
-  name: kubeprimer-db
+    app: powerapp-db-volume
+  name: powerapp-db-volume
 spec:
   accessModes:
   - ReadWriteOnce

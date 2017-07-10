@@ -3,11 +3,11 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: backend
-  name: backend
+    app: powerapp-backend-service
+  name: powerapp-backend-service
 spec:
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: backend
+    app: powerapp-backend

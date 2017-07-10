@@ -2,21 +2,21 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    app: web
-  name: web
+    app: powerapp-web
+  name: powerapp-web
 spec:
   replicas: 3
   template:
     metadata:
       labels:
-        app: web
+        app: powerapp-web
     spec:
       containers:
       - env:
         - name: BACKEND_HOST
-          value: backend
+          value: powerapp-backend-service
         image: sighup/kubeprimer-web
-        name: web
+        name: powerapp-web
         ports:
         - containerPort: 80
       restartPolicy: Always
