@@ -12,11 +12,11 @@ spec:
         app: powerapp-web
     spec:
       containers:
-      - env:
+      - name: powerapp-web
+        env:
         - name: BACKEND_HOST
           value: powerapp-backend-service
         image: sighup/kubeprimer-web
-        name: powerapp-web
         ports:
         - containerPort: 80
       restartPolicy: Always
