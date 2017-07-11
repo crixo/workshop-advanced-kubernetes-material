@@ -13,10 +13,17 @@ spec:
     spec:
       containers:
       - name: powerapp-web
+        image: sighup/kubeprimer-web
         env:
         - name: BACKEND_HOST
           value: powerapp-backend-service
-        image: sighup/kubeprimer-web
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
       restartPolicy: Always

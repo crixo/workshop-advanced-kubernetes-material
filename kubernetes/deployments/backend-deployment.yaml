@@ -13,8 +13,15 @@ spec:
     spec:
       containers:
       - name: powerapp-backend
+        image: sighup/kubeprimer-backend
         env:
         - name: MONGO_HOST
           value: powerapp-mongodb-service
-        image: sighup/kubeprimer-backend
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
       restartPolicy: Always
