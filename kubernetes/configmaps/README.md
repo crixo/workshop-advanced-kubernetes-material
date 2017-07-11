@@ -96,5 +96,6 @@ apiVersion: extensions/v1beta1
 They are stored as strings in etcd as clear text, you should NOT put sensitive data in configmaps.
 
 ### Refs
+
 [http://blog.kubernetes.io/2016/04/configuration-management-with-containers.html](http://blog.kubernetes.io/2016/04/configuration-management-with-containers.html)
 [https://kubernetes.io/docs/tasks/configure-pod-container/configmap/](https://kubernetes.io/docs/tasks/configure-pod-container/configmap/)

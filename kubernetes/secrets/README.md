@@ -63,3 +63,7 @@ spec:
 
 You should mount a volume of type `secret` to the target `path`, that's really all!
 
+### References
+
+[https://kubernetes.io/docs/concepts/configuration/secret/#details](https://kubernetes.io/docs/concepts/configuration/secret/)
+[https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/)
