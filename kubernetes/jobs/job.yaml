@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: pi
 spec:
+  # activeDeadlineSeconds: 100
   # completions: 10
   # parallelism: 3
   template:
