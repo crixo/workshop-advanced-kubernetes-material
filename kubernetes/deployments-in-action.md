@@ -121,10 +121,10 @@ nginx-deployment-4234284026   3         3         3         3m
 
 What we see here is super-interesting. As soon as we rolled out our update, kubernetes has started to `terminate` running pods with the old version and has created new ones aligned with the new state we have specified. It has done that, by creating a new `ReplicaSet` for the updated version of our deployment. So the old `ReplicaSet` gradually diminished the number of running pods while the new `ReplicaSet` Increased it to finally reach desired state.
 
-To see how exactly the deployment has handled the rollout you can always inspect the deployment:
+To see how exactly the deployment has handled the rollout we use the **describe** command.
 
 ```bash
-kubectl describedeployment nginx-deployment
+kubectl describe deployment nginx-deployment
 
 Name:                   nginx-deployment
 Namespace:              default
@@ -167,4 +167,97 @@ m            5m              1       deployment-controller                   Nor
 m            5m              1       deployment-controller                   Normal          ScalingReplicaSet       Scaled down replica set nginx-deployment-3646295028 to 2
 m            5m              1       deployment-controller                   Normal          ScalingReplicaSet       Scaled up replica set nginx-deployment-4234284026 to 2
 m            5m              3       deployment-controller                   Normal          ScalingReplicaSet       (events with common reason combined)"}}
+```
+
+### Rollbacking
+
+What happens if we have a faulty update?
+
+```yaml
+...
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.91
+        ports:
+...
+
+```
+
+```bash
+kubectl apply -f deployments/nginx-deployment.yaml
+
+NAME                                READY     STATUS         RESTARTS   AGE
+nginx-deployment-3660254150-q07l4   0/1       ErrImagePull   0          12s
+nginx-deployment-4234284026-h6bxw   1/1       Running        0          13m
+nginx-deployment-4234284026-hc6x5   1/1       Running        0          13m
+nginx-deployment-4234284026-wscvp   1/1       Running        0          13m
+```
+
+Kubernetes *will start the rollout but will notice that something is wrong with our application*. This will stop the whole process. If we didn't set otherwise in the deployment, kubernetes will try to re-apply the rollout forever giving us time to understand what is happening and take action.
+
+```bash
+kubectl rollout history deployment/nginx-deployment
+
+deployments "nginx-deployment"
+REVISION        CHANGE-CAUSE
+2               <none>
+3               <none>
+4               <none>
+
+---
+
+kubectl rollout history deployment/nginx-deployment --revision=4
+
+deployments "nginx-deployment" with revision #4
+Pod Template:
+  Labels:       app=nginx
+    pod-template-hash=3660254150
+  Containers:
+   nginx:
+    Image:      nginx:1.91
+    Port:       80/TCP
+    Environment:        <none>
+    Mounts:     <none>
+    Volumes:      <none>
+```
+
+Using history and revisions is a very powerful tool, they let you see what changed in your deployments. Also, they let you see whichi deployment was in a sane state and let you rollback to that point of time.
+
+```bash
+deployments "nginx-deployment" with revision #3
+Pod Template:
+  Labels:       app=nginx
+    pod-template-hash=4234284026
+  Containers:
+   nginx:
+    Image:      nginx:1.7.9
+    Port:       80/TCP
+    Environment:        <none>
+    Mounts:     <none>
+    Volumes:      <none>
+
+---
+
+kubectl rollout undo deployment/nginx-deployment --to-revision=3
+```
+
+**This is going to instantly bring us back in time** to a moment where we knew our services were working.
+
+### Last but not least: scaling a deployment
+
+```bash
+kubectl scale deployment nginx-deployment --replicas=10
+
+NAME                                READY     STATUS    RESTARTS   AGE
+nginx-deployment-4234284026-1g7nq   1/1       Running   0          20s
+nginx-deployment-4234284026-8cdmw   1/1       Running   0          20s
+nginx-deployment-4234284026-d8s3p   1/1       Running   0          20s
+nginx-deployment-4234284026-h6bxw   1/1       Running   0          22m
+nginx-deployment-4234284026-hc6x5   1/1       Running   0          22m
+nginx-deployment-4234284026-k937g   1/1       Running   0          20s
+nginx-deployment-4234284026-qgd9d   1/1       Running   0          20s
+nginx-deployment-4234284026-t8zw6   1/1       Running   0          20s
+nginx-deployment-4234284026-wgsqx   1/1       Running   0          20s
+nginx-deployment-4234284026-wscvp   1/1       Running   0          22m
 ```
