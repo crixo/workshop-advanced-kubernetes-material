@@ -44,16 +44,24 @@ No resources found
 
 So, we have a clean cluster!
 
-Let's create our first deployment.
+### Let's create our first deployment.
 
 ```bash
 
 kubectl create -f deployments/nginx-deployment.yaml
 
-kubectl get pods
+kubectl get pods --show-labels
 
-NAME                                READY     STATUS    RESTARTS   AGE
-nginx-deployment-4234284026-02j4d   1/1       Running   0          28s
-nginx-deployment-4234284026-267f6   1/1       Running   0          28s
-nginx-deployment-4234284026-g9819   1/1       Running   0          28s
+NAME                                READY     STATUS    RESTARTS   AGE       LABELS
+nginx-deployment-4234284026-02j4d   1/1       Running   0          3m        app=nginx,pod-template-hash=4234284026
+nginx-deployment-4234284026-267f6   1/1       Running   0          3m        app=nginx,pod-template-hash=4234284026
+nginx-deployment-4234284026-g9819   1/1       Running   0          3m        app=nginx,pod-template-hash=4234284026
+
+kubectl get rs
+
+NAME                          DESIRED   CURRENT   READY     AGE
+nginx-deployment-4234284026   3         3         3         2m
+
 ```
+
+As defined in our deployment.yaml we now have 3 running pods in our cluster, all running `nginx version 1.7.9`.
