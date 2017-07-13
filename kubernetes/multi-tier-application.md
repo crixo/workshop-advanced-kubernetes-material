@@ -78,10 +78,11 @@ We will soon see that all the deployments end up correctly **except for mongodb*
 
 ## What is happening?
 
-If we want to check the status of what is happening in our cluster, we should use:
-`kubectl describe pod <pod_name>`
-`kubectl describe deployment <deployment_name>`
-`kubectl rollout status deployment/<deployment_name>`
+If we want to check the status of what is happening in our cluster, we should use:  
+
+`kubectl describe pod <pod_name>`  
+`kubectl describe deployment <deployment_name>`  
+`kubectl rollout status deployment/<deployment_name>`  
 
 Can you guess why our mongodb won't get running?
 
