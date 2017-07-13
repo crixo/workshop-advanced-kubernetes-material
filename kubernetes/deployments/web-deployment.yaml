@@ -17,6 +17,17 @@ spec:
         env:
         - name: BACKEND_HOST
           value: powerapp-backend-service
+        - name: COMPANY
+          valueFrom:
+            configMapKeyRef:
+              name: web
+              key: COMPANY
+        # How to use a Secret
+        - name: SOME_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: web
+              key: some-password
         ports:
         - containerPort: 80
         resources:
