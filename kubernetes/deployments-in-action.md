@@ -50,6 +50,8 @@ So, we have a clean cluster!
 
 kubectl create -f deployments/nginx-deployment.yaml
 
+---
+
 kubectl get pods --show-labels
 
 NAME                                READY     STATUS    RESTARTS   AGE       LABELS
@@ -57,11 +59,19 @@ nginx-deployment-4234284026-02j4d   1/1       Running   0          3m        app
 nginx-deployment-4234284026-267f6   1/1       Running   0          3m        app=nginx,pod-template-hash=4234284026
 nginx-deployment-4234284026-g9819   1/1       Running   0          3m        app=nginx,pod-template-hash=4234284026
 
+---
+
 kubectl get rs
 
 NAME                          DESIRED   CURRENT   READY     AGE
 nginx-deployment-4234284026   3         3         3         2m
 
+---
+
+kubectl rollout status deployment/nginx-deployment
+
+deployment "nginx-deployment" successfully rolled out
+
 ```
 
-As defined in our deployment.yaml we now have 3 running pods in our cluster, all running `nginx version 1.7.9`.
+As defined in our deployment.yaml we now have 3 running pods in our cluster, all running `nginx version 1.7.9` and with the labels set as expected.
