@@ -42,8 +42,18 @@ kubectl get pods
 No resources found
 ```
 
-So, have a clean cluster! Nothing is running.
+So, we have a clean cluster!
 
-Let's create our first actual service:
+Let's create our first deployment.
 
-`kubectl create -f deployments/nginx-deployments.yaml`
+```bash
+
+kubectl create -f deployments/nginx-deployment.yaml
+
+kubectl get pods
+
+NAME                                READY     STATUS    RESTARTS   AGE
+nginx-deployment-4234284026-02j4d   1/1       Running   0          28s
+nginx-deployment-4234284026-267f6   1/1       Running   0          28s
+nginx-deployment-4234284026-g9819   1/1       Running   0          28s
+```
