@@ -5,18 +5,18 @@ Now you should know all the theory behind `Pods`, `ReplicaSets`, `ReplicationCon
 here is a simple example of `Deployment`:
 
 ```yaml
-apiVersion: apps/v1beta1 # for versions before 1.6.0 use extensions/v1beta1
+apiVersion: apps/v1beta1 # Version of the Kubernetes API to use, necessary for kubectl
 kind: Deployment
 metadata:
-  name: nginx-deployment # name referenced by Kubernetes during the deployment lifecycle
+  name: nginx-deployment # Name referenced during the deployment life
 spec:
-  replicas: 3 # here is the desired state ensured by the ReplicaSet
+  replicas: 3 # Desired state ensured by rs
   template:
     metadata:
-      labels: # here are labels (simple key-values) associated with the pod
-        app: nginx # labels attach
+      labels: # Labels (simple key-values) associated with the pod
+        app: nginx
     spec:
-      containers: # the actual containers, a simple nginx exposing port 80
+      containers: # The actual containers, a simple nginx exposing port 80
       - name: nginx
         image: nginx:1.7.9
         ports:
