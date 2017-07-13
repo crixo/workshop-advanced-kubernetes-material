@@ -90,7 +90,8 @@ Can you guess why our mongodb won't get running?
 
 Mongodb is failing because we forgot one of its dependencies: `the volume`. One of the characteristics of Kubernetes is that it lets you handle storage in terms of volumes that your pods will claim when they get scheduled. In this specific case, `mongodb` is requiring to have a volume available, which currently does NOT exists.
 
-We can create it:
+We can create it:  
+
 `kubectl create -f volumes/kubeprimer-db-persistentvolumeclaim.yaml`
 
 Nice! We have all our deployments correctly getting rolled out and if there are no issues we should see the pods soon getting `Running`.
