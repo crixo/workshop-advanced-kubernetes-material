@@ -22,3 +22,28 @@ spec:
         ports:
         - containerPort: 80
 ```
+
+# Let's play a bit
+
+Let's define a baseline: we will issue all our commands from `$PROJECT_HOME/kubernetes`
+
+First of all, let's see the current state of our cluster:
+
+```bash
+kubectl get nodes
+
+NAME       STATUS    AGE       VERSION
+minikube   Ready     1d        v1.6.4
+```
+
+```bash
+kubectl get pods
+
+No resources found
+```
+
+So, have a clean cluster! Nothing is running.
+
+Let's create our first actual service:
+
+`kubectl create -f deployments/nginx-deployments.yaml`
