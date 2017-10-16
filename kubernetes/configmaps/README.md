@@ -12,20 +12,20 @@ They can be configured in a `ConfigMap.yaml` file.
 
 ```yaml
 apiVersion: v1
- kind: ConfigMap
- metadata:
-   Name: example-configmap
- data:
-   # property-like keys
-   game-properties-file-name: game.properties
-   ui-properties-file-name: ui.properties
+kind: ConfigMap
+metadata:
+  name: example-configmap
+data:
+  # property-like keys
+  game-properties-file-name: game.properties
+  ui-properties-file-name: ui.properties
 
-   # file-like keys
-   game.properties: |
-     enemies=aliens
-     lives=3
-     enemies.cheat=true
-     enemies.cheat.level=noGoodRotten
+  # file-like keys
+  game.properties: |
+    enemies=aliens
+    lives=3
+    enemies.cheat=true
+    enemies.cheat.level=noGoodRotten
     secret.code.passphrase=UUDDLRLRBABAS
     secret.code.allowed=true
     secret.code.lives=30
