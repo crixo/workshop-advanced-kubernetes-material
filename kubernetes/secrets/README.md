@@ -27,8 +27,9 @@ data:
 
 ## Getting back secrets
 
-`kubectl get secret mysecret -o yaml`
-`echo "MWYyZDFlMmU2N2Rm" | base64 --decode 1f2d1e2e67df`
+```
+kubectl.exe get secret mysecret -o yaml | grep username | cut -f 4 -d ' ' | base64 --decode && echo ""
+```
 
 ## Using secrets
 
