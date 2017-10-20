@@ -16,4 +16,4 @@ Once Grafana is up & running, you can specify prometheus as datasource. Because 
 
 Once the data-source is configured, we need to setup dashboards. The amazing k8s grafana/kubernetes communities provide a good number of ready-to-use dashboards.
 
-To see an example of this, try to import the following dashboard: `https://grafana.com/dashboards/315`
+To see an example of this, try to import the following dashboard: `https://grafana.com/dashboards/3131`

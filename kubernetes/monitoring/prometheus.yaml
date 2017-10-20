@@ -52,3 +52,32 @@ spec:
   selector:
     app: prometheus
 
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+  name: prom
+spec:
+  type: "NodePort"
+  ports:
+    - port: 9090
+      targetPort: 9090
+  selector:
+    app: prometheus
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+  name: alertmanager
+spec:
+  type: "NodePort"
+  ports:
+    - port: 9093
+      targetPort: 9093
+  selector:
+    app: prometheus

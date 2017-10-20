@@ -105,7 +105,7 @@ Now we can start to expose the pods to the outer world and to each others.
 Let's start with `web`. As I mentioned this is the only pod that will be reachable from outside the cluster.
 
 ```bash
-kubectl create -fservices/web-service-nodeport.yaml
+kubectl create -f services/web-service-nodeport.yaml
 ```
 
 Now, if you do `minikube ip` you can get the IP of the minikube node exposing the service. To get what port is exposing our service, we can use `kubectl get services`. Now visiting `<minikube_ip>:<port>` should show the frontend application.

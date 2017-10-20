@@ -17,6 +17,7 @@ spec:
         env:
         - name: BACKEND_HOST
           value: powerapp-backend-service
+        # How to use a configmap
         - name: COMPANY
           valueFrom:
             configMapKeyRef:
