@@ -8,14 +8,9 @@ You will need to have a laptop (Windows, Linux or Mac), it is preferred for your
 
 This workshop requires that you have the following installed on your machine:
 - [Virtualbox](https://www.virtualbox.org/)
-- [Vagrant](https://www.vagrantup.com/downloads.html)
 - [Minikube](https://github.com/kubernetes/minikube#installation)
 
 In order to speed up the setup process, we also recommend you to download the VMs & containers required during the workshop.
-
-### Downloading vagrant box
-
-Start downloading the vagrant box. This isn't strictly required but again, recommended for you to test the multi-node scenario. You can do that with the following command `vagrant box add bento/ubuntu-16.04`
 
 ### Setting up Kubectl
 Kubectl is the CLI controller app for kubernetes. You will use to interact with all the kubernetes cluster. Therefore it is required to be able to perform *any* task during the workshop.
@@ -30,7 +25,7 @@ Do the following commands to setup the minikube installation:
 
 1. `minikube start`, this will setup the minikube VM
 2. `minikube ssh` to get into the machine
-3. From inside the machine do `docker pull sighup/kubeprimer-web`, `docker pull sighup/kubeprimer-backend`, `docker pull mongo:3.0.15`
+3. From inside the machine do `docker pull sighup/kubeprimer-web`, `docker pull sighup/kubeprimer-backend`, `docker pull mongo:3.7.3`
 4. Stop minikube without destroying it with `minikube stop`
 
 If you don't know what those commands are for or how they work specifically, do not worry. We will review them during the workshop.
