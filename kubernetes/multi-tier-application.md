@@ -33,10 +33,12 @@ This means that the deployment depends on both a ConfigMap called `web` and a Se
 If we try to issue `kubectl create -f deployments/web-deployment.yaml` without having created the ConfigMap and the Secret beforehand, it will result in a failure.
 
 ```bash
+kubectl get pods
+
 NAME                            READY     STATUS                       RESTARTS   AGE
-powerapp-web-1507534023-4fff2   0/1       configmaps "web" not found   0          1m
-powerapp-web-1507534023-54tpb   0/1       configmaps "web" not found   0          1m
-powerapp-web-1507534023-cc9f4   0/1       configmaps "web" not found   0          1m
+powerapp-web-7c675467d8-727cm   0/1       CreateContainerConfigError   0          1m
+powerapp-web-7c675467d8-bl8zv   0/1       CreateContainerConfigError   0          1m
+powerapp-web-7c675467d8-fc4rr   0/1       CreateContainerConfigError   0          1m
 ```
 
 As first step we **must** create our `ConfigMaps` and `Secrets`.
@@ -62,7 +64,6 @@ web                   Opaque                                1         11s
 We can start rolling out our applications in the following way
 
 ```bash
-kubectl create -f deployments/web-deployment.yaml
 kubectl create -f deployments/backend-deployment.yaml
 kubectl create -f deployments/mongo-deployment.yaml
 
