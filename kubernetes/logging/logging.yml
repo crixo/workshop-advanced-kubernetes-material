@@ -21,6 +21,9 @@ spec:
               mountPath: /var/lib/boot2docker
             - name: varlog
               mountPath: /var/log
+            - name: varlibdockercontainers
+              mountPath: /var/lib/docker/containers
+              readOnly: true
       volumes:
         - hostPath:
             path: /mnt/sda1/var/lib/boot2docker
@@ -61,7 +64,7 @@ spec:
       containers:
         - name: elasticsearch-logging
           image: elasticsearch:5.4.3
-          imagePullPolicy: Always 
+          imagePullPolicy: Always
           ports:
             - containerPort: 9200
 ---
@@ -91,13 +94,13 @@ spec:
     metadata:
       labels:
         app: logging
-        id: kibana-logging 
+        id: kibana-logging
     spec:
       containers:
         - name: kibana-logging
           env:
             - name: ELASTICSEARCH_URL
-              value: http://elasticsearch-logging:9200 
+              value: http://elasticsearch-logging:9200
           image: kibana:5.4.3
           ports:
             - containerPort: 5601
