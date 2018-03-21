@@ -1,6 +1,6 @@
 build:
-	docker pull mongo:3.0.15
-	docker tag mongo:3.0.15 sighup/kubeprimer-mongo
+	docker pull mongo:3.7.3
+	docker tag mongo:3.7.3 sighup/kubeprimer-mongo
 
 run:
 	docker rm -f kubeprimer-mongo || true
