@@ -3,13 +3,12 @@
 In `kubernetes/jobs/` you will find a simple example of job. This is a dummy job, meaning that it doesn't do any real work. It will boot a pod that will calculate `pi`, it will take about 10 sec to complete.
 
 We can deploy the job by running:  
-`kubectl create -f jobs/job.yaml`
+`kubectl apply -f jobs/job.yaml`
 
 Output is going to be:
 
 ```bash
 kubectl get pods
-
 NAME       READY     STATUS    RESTARTS   AGE
 pi-d9s7s   1/1       Running   0          <invalid>
 ```
@@ -26,7 +25,7 @@ Parallelism on jobs can be achieved setting `.spec.completions` and `.spec.paral
 
 ```bash
 kubectl delete job pi
-kubectl create -f jobs/job.yaml
+kubectl apply -f jobs/job.yaml
 ```
 
 What we will see is that one after another, the job will be executed 10 times. Kubernetes is executing them one after the other as `parallelism` is not set and therefore defaulting to 1.
@@ -35,7 +34,7 @@ What we will see is that one after another, the job will be executed 10 times. K
 
 ```bash
 kubectl delete job pi
-kubectl create -f jobs/job.yaml
+kubectl apply -f jobs/job.yaml
 
 NAME       READY     STATUS              RESTARTS   AGE
 pi-j1b1f   0/1       ContainerCreating   0          <invalid>
