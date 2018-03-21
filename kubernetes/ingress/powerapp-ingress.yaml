@@ -4,7 +4,7 @@ metadata:
   name: web-ingress
 spec:
   rules:
-  - host: powerapp.kubeprimer.dev
+  - host: powerapp.kubeprimer.local
     http:
       paths:
       - backend:

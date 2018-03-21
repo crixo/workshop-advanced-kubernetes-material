@@ -53,7 +53,7 @@ To get the related yaml file: `kubectl get configmap <configmap-name> -o yaml`
 
 ## Consuming ConfigMaps
 
-There are three ways of consuming a ConfigMap:  
+There are two ways of consuming a ConfigMap:  
 1. Environment variables
 2. File in a volume
 

@@ -30,7 +30,7 @@ If you have a look at `deployments/web-deployment.yaml` you will see that states
 
 This means that the deployment depends on both a ConfigMap called `web` and a Secret called `web`.
 
-If we try to issue `kubectl create -f deployments/web-deployment.yaml` without having created the ConfigMap and the Secret beforehand, it will result in a failure.
+If we try to issue `kubectl apply -f deployments/web-deployment.yaml` without having created the ConfigMap and the Secret beforehand, it will result in a failure.
 
 ```bash
 kubectl get pods
@@ -44,10 +44,10 @@ powerapp-web-7c675467d8-fc4rr   0/1       CreateContainerConfigError   0        
 As first step we **must** create our `ConfigMaps` and `Secrets`.
 
 ```bash
-kubectl create -f configmaps/powerapp-configmap.yaml
+kubectl apply -f configmaps/powerapp-configmap.yaml
 configmap "web" created
 
-kubectl create -f secrets/powerapp-secrets.yaml
+kubectl apply -f secrets/powerapp-secrets.yaml
 secret "web" created
 kubectl get configmaps
 NAME      DATA      AGE
@@ -64,8 +64,9 @@ web                   Opaque                                1         11s
 We can start rolling out our applications in the following way
 
 ```bash
-kubectl create -f deployments/backend-deployment.yaml
-kubectl create -f deployments/mongo-deployment.yaml
+kubectl apply -f deployments/backend-deployment.yaml
+kubectl apply -f deployments/web-deployment.yaml
+kubectl apply -f deployments/mongo-deployment.yaml
 
 NAME                                READY     STATUS              RESTARTS   AGE
 powerapp-backend-106957089-jcw91    0/1       ContainerCreating   0          1m
@@ -93,7 +94,7 @@ Mongodb is failing because we forgot one of its dependencies: `the volume`. One 
 
 We can create it:  
 
-`kubectl create -f volumes/kubeprimer-db-persistentvolumeclaim.yaml`
+`kubectl apply -f volumes/kubeprimer-db-persistentvolumeclaim.yaml`
 
 Nice! We have all our deployments correctly getting rolled out and if there are no issues we should see the pods soon getting `Running`.
 
@@ -106,7 +107,7 @@ Now we can start to expose the pods to the outer world and to each others.
 Let's start with `web`. As I mentioned this is the only pod that will be reachable from outside the cluster.
 
 ```bash
-kubectl create -f services/web-service-nodeport.yaml
+kubectl apply -f services/web-service-nodeport.yaml
 ```
 
 Now, if you do `minikube ip` you can get the IP of the minikube node exposing the service. To get what port is exposing our service, we can use `kubectl get services`. Now visiting `<minikube_ip>:<port>` should show the frontend application.
@@ -115,11 +116,16 @@ You are seeing the `NodePort` service in action, where each node of the cluster 
 
 We can now rollout services for `backend` and `mongodb` in a similar way. Once that is done, reloading the frontend page should show no error and magically our application works.
 
+```bash
+kubectl apply -f services/backend-service.yaml
+kubectl apply -f services/mongo-service.yaml
+```
+
 But what is really happening here? Let's discuss this together.
 
 ## Exposing applications via Ingress
 
-So far we have expose the frontend using `NodePort`, but accessing the service with the combination `<ip>:<port>` isn't exactly ideal. Time to see something more advanced: `Ingress`
+So far we have exposed the frontend using `NodePort`, but accessing the service with the combination `<ip>:<port>` isn't exactly ideal. Time to see something more advanced: `Ingress`
 
 `minikube addons enable ingress`
 

@@ -48,7 +48,7 @@ So, we have a clean cluster!
 
 ```bash
 
-kubectl create -f deployments/nginx-deployment.yaml
+kubectl apply -f deployments/nginx-deployment.yaml
 
 ---
 
@@ -221,7 +221,7 @@ Pod Template:
   Volumes:	<none>
 ```
 
-Using history and revisions is a very powerful tool, they let you see what changed in your deployments. Also, they let you see whichi deployment was in a sane state and let you rollback to that point of time.
+Using history and revisions is a very powerful tool, they let you see what changed in your deployments. Also, they let you see which deployment was in a sane state and let you rollback to that point of time.
 
 ```bash
 kubectl rollout history deployment/nginx-deployment --revision=2
