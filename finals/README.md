@@ -6,15 +6,22 @@ This is your final exam, don't worry you wont be graded but we hope you will hav
 
 We have a simple multi tier app to deploy on kubernetes. The multi tier app is composed by a frontend service and a backend service.
 
-The two services are pretty trivial but you will need to apply all the 	knowledge learned today to complete the exercise.
+To obtain the docker images you can pull:
+
+```
+docker pull sighup/kubeprimer_frontend
+docker pull sighup/kubeprimer_backend
+```
+
+The two services are pretty trivial but you will need to apply all the knowledge learned today to complete the exercise.
 
 ## Suggested approach
 
-I would start with deploying the frontend service, check if it works, and, if we think we are satisfied with the result we should continue with the backened app.
+I would start with deploying the frontend service, check if it works, and, if we think we are satisfied with the result we should continue with the backend app (you'll need the backend).
 
-Remember you can use  `kubectl logs`, `kubectl exec`, and `kubectl port-forward`.
+Remember you can use  `kubectl logs`, `kubectl exec`, and `kubectl port-forward` to help you debug if something goes wrong.
 
-Note that it wont come up at the first try, you **will** have to check / debug the containers. 
+A ConfigMap might be needed.
 
 
 
