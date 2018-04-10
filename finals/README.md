@@ -9,8 +9,8 @@ We have a simple multi tier app to deploy on kubernetes. The multi tier app is c
 To obtain the docker images you can pull:
 
 ```
-docker pull sighup/kubeprimer_frontend
-docker pull sighup/kubeprimer_backend
+docker pull sighup/kubeprimer_frontend:0.2
+docker pull sighup/kubeprimer_backend:0.1
 ```
 
 The two services are pretty trivial but you will need to apply all the knowledge learned today to complete the exercise.
@@ -22,7 +22,3 @@ I would start with deploying the frontend service, check if it works, and, if we
 Remember you can use  `kubectl logs`, `kubectl exec`, and `kubectl port-forward` to help you debug if something goes wrong.
 
 A ConfigMap might be needed.
-
-
-
-
