@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: powerapp-backend
-        image: sighup/kubeprimer-backend
+        image: sighup/powerapp-backend
         env:
         - name: MONGO_HOST
           value: powerapp-mongodb-service
