@@ -56,7 +56,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 9093
-      targetPort: 9093
+  - port: 9093
+    nodePort: 30993
+    targetPort: 9093
   selector:
     app: alertmanager
