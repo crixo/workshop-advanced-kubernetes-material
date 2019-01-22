@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-config
+  labels:
+    app: alertmanager
+data:
+  alertmanager.yml: |
+    global:
+      smtp_smarthost: 'smtp.gmail.com:587'
+      smtp_from: 'support@sighup.io'
+      smtp_auth_username: 'support@sighup.io'
+      smtp_auth_password: 'XXXXXXXX'
+      smtp_require_tls: true
+      slack_api_url: "https://hooks.slack.com/services/XXXXXXXX"
+      resolve_timeout: 5m
+    templates:
+      - '/etc/alertmanager/config/*.tmpl'
+    route:
+      group_by: ['alertname', 'job']
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+      receiver: 'alert-team'
+    receivers:
+      - name: 'alert-team'
+        slack_configs:
+          - channel: alerts
+            send_resolved: true
+        email_configs:
+          - to: 'alerts@sighup.io'
+            send_resolved: true
