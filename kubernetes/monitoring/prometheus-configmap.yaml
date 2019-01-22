@@ -1,4 +1,7 @@
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
 data:
   prometheus.yml: |
     global:
@@ -104,6 +107,3 @@ data:
           - source_labels: [__meta_kubernetes_pod_container_port_number]
             action: keep
             regex: 9\d{3}
-kind: ConfigMap
-metadata:
-  name: prometheus
