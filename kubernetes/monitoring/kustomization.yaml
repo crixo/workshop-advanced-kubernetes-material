@@ -1,0 +1,16 @@
+namespace: monitoring
+
+resources:
+- alertmanager-configmap.yaml
+- alertmanager-persistentvolumeclaim.yaml
+- alertmanager.yaml
+- grafana-dashboards-configmap.yaml
+- grafana-dashboard-nodes-configmap.yaml
+- grafana-datasources-configmap.yaml
+- grafana.yaml
+- node-exporter.yaml
+- ns.yaml
+- prometheus-configmap.yaml
+- prometheus-persistentvolumeclaim.yaml
+- prometheus-rbac.yaml
+- prometheus.yaml
