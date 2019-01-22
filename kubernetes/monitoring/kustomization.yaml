@@ -11,6 +11,7 @@ resources:
 - node-exporter.yaml
 - ns.yaml
 - prometheus-configmap.yaml
+- prometheus-rules-configmap.yaml
 - prometheus-persistentvolumeclaim.yaml
 - prometheus-rbac.yaml
 - prometheus.yaml

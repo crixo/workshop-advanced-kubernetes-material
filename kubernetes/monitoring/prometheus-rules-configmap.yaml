@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-rules
+data:
+  test-rules.rules: |
+    groups:
+    - name: test.rules
+      rules:
+      - alert: TestAlert
+        annotations:
+          message: "This is a test alert."
+        expr: vector(1)
+        labels:
+          severity: none
