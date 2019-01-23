@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-config
+  labels:
+    app: alertmanager
+data:
+  alertmanager.yml: |
+    global:
+      smtp_smarthost: 'maildev-smtp:1025'
+      smtp_from: 'alertmanager@kubeprimer'
+      slack_api_url: "https://hooks.slack.com/services/XXXXXXXX"
+      resolve_timeout: 5m
+    templates:
+      - '/etc/alertmanager/config/*.tmpl'
+    route:
+      group_by: ['alertname', 'job']
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+      receiver: 'alert-team'
+    receivers:
+      - name: 'alert-team'
+        slack_configs:
+          - channel: alerts
+            send_resolved: true
+        email_configs:
+          - to: 'alert-team@kubeprimer'
+            send_resolved: true

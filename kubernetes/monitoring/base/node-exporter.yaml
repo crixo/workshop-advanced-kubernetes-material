@@ -50,11 +50,12 @@ metadata:
     app: node-exporter
   name: node-exporter
 spec:
-  type: ClusterIP
-  clusterIP: None
+  type: NodePort
   ports:
     - name: metrics
       port: 9100
+      nodePort: 30910
+      targetPort: 9100
       protocol: TCP
   selector:
     app: node-exporter

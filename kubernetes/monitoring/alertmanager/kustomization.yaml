@@ -1,0 +1,3 @@
+resources:
+- alertmanager-configmap.yaml
+- prometheus-rules-configmap.yaml
