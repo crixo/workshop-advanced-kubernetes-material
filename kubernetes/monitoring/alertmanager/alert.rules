@@ -1,0 +1,10 @@
+groups:
+- name: node.alerts
+  rules:
+  - alert: NodeHighCpuUtilisation
+    expr: instance:node_cpu_utilisation:avg1m > 0.9
+    for: 15m
+    labels:
+      severity: warning
+    annotations:
+      message: “High CPU usage on {{ $labels.instance }}”
