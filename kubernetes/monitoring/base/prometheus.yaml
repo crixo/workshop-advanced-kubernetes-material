@@ -47,8 +47,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+    prometheus.io/scrape: 'true'
   labels:
     app: prometheus
+    job: prometheus
   name: prometheus
 spec:
   type: NodePort

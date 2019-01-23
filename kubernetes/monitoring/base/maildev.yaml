@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: maildev
+  name: maildev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: maildev
+  template:
+    metadata:
+      labels:
+        app: maildev
+    spec:
+      containers:
+      - name: maildev
+        image: djfarrelly/maildev@sha256:624e0ec781e11c3531da83d9448f5861f258ee008c1b2da63b3248bfd680acfa
+        command: ["/usr/src/app/bin/maildev"]
+        args:
+        - "--incoming-user"
+        - "$(MAILDEV_USERNAME)"
+        - "--incoming-pass"
+        - "$(MAILDEV_PASSWORD)"
+        env:
+        - name: MAILDEV_USERNAME
+          value: alertmanager@kubeprimer.local
+        - name: MAILDEV_PASSWORD
+          value: alertmanager
+        ports:
+        - name: http
+          containerPort: 1080
+        - name: smtp
+          containerPort: 1025
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: maildev
+  name: maildev-web
+spec:
+  type: NodePort
+  ports:
+  - port: 1080
+    nodePort: 30080
+    targetPort: 1080
+  selector:
+    app: maildev
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: maildev
+  name: maildev-smtp
+spec:
+  ports:
+  - port: 1025
+    targetPort: 1025
+  selector:
+    app: maildev

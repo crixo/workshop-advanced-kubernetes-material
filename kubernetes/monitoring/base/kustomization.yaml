@@ -8,6 +8,7 @@ resources:
 - grafana-dashboard-nodes-configmap.yaml
 - grafana-datasources-configmap.yaml
 - grafana.yaml
+- maildev.yaml
 - node-exporter.yaml
 - ns.yaml
 - prometheus-configmap.yaml

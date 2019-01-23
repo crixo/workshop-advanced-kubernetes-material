@@ -50,6 +50,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+    prometheus.io/scrape: 'true'
   labels:
     app: alertmanager
   name: alertmanager

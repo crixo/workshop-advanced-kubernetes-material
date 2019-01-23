@@ -7,11 +7,11 @@ metadata:
 data:
   alertmanager.yml: |
     global:
-      smtp_smarthost: 'smtp.gmail.com:587'
-      smtp_from: 'support@sighup.io'
-      smtp_auth_username: 'support@sighup.io'
-      smtp_auth_password: 'XXXXXXXX'
-      smtp_require_tls: true
+      smtp_smarthost: 'maildev-smtp:1025'
+      smtp_from: 'alertmanager@kubeprimer'
+      smtp_auth_username: 'alertmanager@kubeprimer'
+      smtp_auth_password: 'alertmanager'
+      smtp_require_tls: false
       slack_api_url: "https://hooks.slack.com/services/XXXXXXXX"
       resolve_timeout: 5m
     templates:
@@ -28,5 +28,5 @@ data:
           - channel: alerts
             send_resolved: true
         email_configs:
-          - to: 'alerts@sighup.io'
+          - to: 'alert-team@kubeprimer'
             send_resolved: true

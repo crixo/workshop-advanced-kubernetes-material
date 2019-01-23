@@ -13,3 +13,9 @@ data:
         expr: vector(1)
         labels:
           severity: none
+      - alert: TestAlert2
+        annotations:
+          message: "This is a test alert. (2)"
+        expr: vector(1)
+        labels:
+          severity: none
