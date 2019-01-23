@@ -16,18 +16,7 @@ spec:
     spec:
       containers:
       - name: maildev
-        image: djfarrelly/maildev@sha256:624e0ec781e11c3531da83d9448f5861f258ee008c1b2da63b3248bfd680acfa
-        command: ["/usr/src/app/bin/maildev"]
-        # args:
-        # - "--incoming-user"
-        # - "$(MAILDEV_USERNAME)"
-        # - "--incoming-pass"
-        # - "$(MAILDEV_PASSWORD)"
-        # env:
-        # - name: MAILDEV_USERNAME
-        #   value: alertmanager@kubeprimer.local
-        # - name: MAILDEV_PASSWORD
-        #   value: alertmanager
+        image: djfarrelly/maildev:1.0.0-rc2
         ports:
         - name: http
           containerPort: 1080
