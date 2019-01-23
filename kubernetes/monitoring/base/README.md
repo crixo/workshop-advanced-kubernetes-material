@@ -1,8 +1,13 @@
 # Monitoring with Prometheus
 
 This folder contains Kubernetes manifests to deploy a full monitoring stack
-composed by Prometheus, Alertmanager, Grafana and node-exporter in the
+composed by Prometheus, Alertmanager, Grafana, Maildev and node-exporter in the
 `monitoring` namespace.
+
+To deploy the monitoring stack, run the following command
+```shell
+$ kustomize build . | kubectl apply -f -
+```
 
 It is worth to point out that `node-exporter` is a pod of type `DaemonSet`,
 meaning that kubernetes will make sure that exactly one `node-exporter` is ran
