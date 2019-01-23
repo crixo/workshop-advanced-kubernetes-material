@@ -19,8 +19,6 @@ configMapGenerator:
   files:
   - prometheus.yml
 - name: prometheus-rules
-  files:
-  - test.rules
 - name: grafana-dashboards
   files:
   - dashboards.yaml

@@ -47,3 +47,7 @@ The `grafana` service is of type `NodePort`, you can access it on port `30300`.
 
 The `alertmanager` service is of type `NodePort`, you can access it on port
 `30993`.
+
+## Maildev 
+
+Maildev is used as a test appliction for email sent by alertmanager and it's web interface is exposed with a service of type `NodePort` on port `30080`
