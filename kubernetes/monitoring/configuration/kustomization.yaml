@@ -1,3 +1,14 @@
-resources:
-- alertmanager-configmap.yaml
-- prometheus-configmap.yaml
+namespace: monitoring
+
+bases:
+- ../base
+
+configMapGenerator:
+- name: prometheus-config
+  behavior: merge
+  files:
+  - prometheus.yml
+- name: prometheus-rules
+  behavior: merge
+  files:
+  - record.rules
