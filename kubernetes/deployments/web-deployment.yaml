@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: powerapp-web
-        image: sighup/kubeprimer-frontend
+        image: sighup/powerapp-frontend
         env:
         - name: BACKEND_HOST
           value: powerapp-backend-service
