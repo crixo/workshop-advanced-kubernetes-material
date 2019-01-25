@@ -48,6 +48,10 @@ receivers:
     email_configs:
       - to: 'kubernetes-alerts@example.com'
         send_resolved: true
+  - name: 'powerapp-team'
+    slack_configs:
+      - channel: powerapp-alerts
+        send_resolved: true
   - name: 'pager-team'
     pagerduty_configs:
       - routing_key: XXXXXXXX
