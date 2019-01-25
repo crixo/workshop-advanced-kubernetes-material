@@ -1,9 +1,34 @@
 # Logging
 
-The best supported logging stack for `Kubernetes` is composed by `fluentd`-`Elasticsearch`-`Kibana`.
+This folder contains Kubernetes manifests to deploy a logging stack composed by
+Fluentd, Elasticsearch and Kibana in the `logging` namespace.
 
-`logging.yaml` contains all the parts required to deploy your stack. Note that this deployments was specifically done to work with `minikube`.
+Before deploying, let's see what's inside of `kustomization.yaml`.
 
-## Extracting useful data about `PowerApp`
+To deploy the logging stack, run the following command
+```shell
+kustomize build . | kubectl apply -f -
+```
 
-After you have created your index, we can see some data about our running app. In order to do so, simply filter for `Chrome` and select `log` to remove a bit of noise. That should start to clearly show any request you'll be doing to our app.
+Note that both Fluentd and Elasticsearch export metrics that Prometheus will
+automatically pick up once we deploy them.
+
+## Fluentd
+
+Fluentd is deployed as a `DaemonSet` to make sure that logs collection will
+automatically happen on every node.
+
+## Elasticsearch
+
+Elasticsearch is deployed as a `StatefulSet` because each pod needs to provision
+its own storage and to maintain a stable name across reloads. This is needed
+especially if we want to have an highly-available Elasticsearch deployment.
+
+The `elasticsearch` service is of type `NodePort`, you can access it on port
+`30920`.
+
+## Kibana
+
+Kibana is deployed to automatically connect to the Elasticsearch instance.
+
+The `kibana` service is of type `NodePort`, you can access it on port `30561`.
