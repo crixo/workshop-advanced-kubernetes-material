@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
-  "iteration": 1548168485718,
+  "iteration": 1548372798604,
   "links": [],
   "panels": [
     {
@@ -154,22 +153,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "node_load1{instance=\"$instance\"}",
+          "expr": "sum(node_load1{instance=\"$instance\"}) / sum(count by (instance) (node_cpu_seconds_total{instance=\"$instance\", mode=\"idle\"}))",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
           "legendFormat": "Saturation (1m)",
           "refId": "A"
         },
         {
-          "expr": "node_load5{instance=\"$instance\"}",
+          "expr": "sum(node_load5{instance=\"$instance\"}) / sum(count by (instance) (node_cpu_seconds_total{instance=\"$instance\", mode=\"idle\"}))",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
           "legendFormat": "Saturation (5m)",
           "refId": "B"
         },
         {
-          "expr": "node_load15{instance=\"$instance\"}",
+          "expr": "sum(node_load15{instance=\"$instance\"}) / sum(count by (instance) (node_cpu_seconds_total{instance=\"$instance\", mode=\"idle\"}))",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
           "legendFormat": "Saturation (15m)",
           "refId": "C"
@@ -194,7 +196,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -294,8 +296,8 @@
           "format": "percentunit",
           "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "1",
+          "min": "0",
           "show": true
         },
         {

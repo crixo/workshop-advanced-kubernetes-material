@@ -4,8 +4,6 @@ resources:
 - alertmanager-persistentvolumeclaim.yaml
 - alertmanager-deployment.yaml
 - grafana.yaml
-- maildev.yaml
-- node-exporter.yaml
 - ns.yaml
 - prometheus-persistentvolumeclaim.yaml
 - prometheus-rbac.yaml

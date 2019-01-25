@@ -1,5 +1,5 @@
 global:
-  smtp_smarthost: 'maildev-smtp:1025'
+  smtp_smarthost: 'mail.example.com:25'
   smtp_from: 'alertmanager@kubeprimer'
   slack_api_url: "https://hooks.slack.com/services/XXXXXXXX"
   resolve_timeout: 5m

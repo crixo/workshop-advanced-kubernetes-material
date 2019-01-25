@@ -1,29 +1,24 @@
 # Monitoring with Prometheus
 
-This folder contains Kubernetes manifests to deploy a full monitoring stack
-composed by Prometheus, Alertmanager, Grafana, Maildev and node-exporter in the
-`monitoring` namespace.
+This folder contains Kubernetes manifests to deploy a monitoring stack composed
+by Prometheus, Alertmanager and Grafana in the `monitoring` namespace.
+
+Before deploying, let's see what's inside of `kustomization.yaml`.
 
 To deploy the monitoring stack, run the following command
 ```shell
 $ kustomize build . | kubectl apply -f -
 ```
 
-It is worth to point out that `node-exporter` is a pod of type `DaemonSet`,
-meaning that kubernetes will make sure that exactly one `node-exporter` is ran
-at all times on each node.
-
 This is also a very concrete example of usage for `ConfigMaps` as we use them to
-store Prometheus, Alertmanager and Grafana configuration files, the configmap
+store Prometheus, Alertmanager and Grafana configuration files, the Configmap
 are then mounted as a `volume` and the configurations are made available to
 the pods as a mounted file.
 
 ## Prometheus
 
-The `prometheus` deployment is already configured to perform target discovery
-through the Kubernetes API. Setting the annotation `prometheus.io/scrape` to
-`true` on a `Service` object will be enough to have it appears under Prometheus
-scrape targets. See [node-exporter.yaml](node-exporter.yaml) for an example.
+The `prometheus` deployment is not yet configured to perform target discovery
+through the Kubernetes API.
 
 The `prometheus` service is of type `NodePort`, therefore you can access it on
 port `30990` like the following
@@ -46,13 +41,10 @@ to automatically load dashboards definitions from
 `/grafana-dashboard-definitions/0`. You will find a "Kubernetes Nodes" dashboard
 already provisioned to play with.
 
-The `grafana` service is of type `NodePort`, you can access it on port `30300`.
+The `grafana` service is of type `NodePort`, you can access it on port `30300`
+with `admin` as username and password .
 
 ## Alertmanager
 
 The `alertmanager` service is of type `NodePort`, you can access it on port
 `30993`.
-
-## Maildev 
-
-Maildev is used as a test appliction for email sent by alertmanager and it's web interface is exposed with a service of type `NodePort` on port `30080`
