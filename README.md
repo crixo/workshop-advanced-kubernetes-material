@@ -17,6 +17,13 @@ Kubectl is the CLI controller app for kubernetes. You will use to interact with 
 
 [Here how to install it](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
+### Setting up Kustomize
+Kustomize is needed to ease the handling and the customization of multiple
+manifest files.
+
+[Here how to install it](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/INSTALL.md)
+
+
 ### Setting up minikube
 
 Minikube is a simple one-node installation of Kubernetes specifically designed to work on your local machine.
