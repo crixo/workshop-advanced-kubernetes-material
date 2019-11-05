@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -9,6 +9,9 @@ spec:
   # strategy used to replace old pods by new ones.
   strategy:
     type: Recreate # All existing pods are killed before creating new ones
+  selector:
+    matchLabels:
+      app: mongodb
   template:
     metadata:
       labels:

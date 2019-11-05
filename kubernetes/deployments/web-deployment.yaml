@@ -1,11 +1,14 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     app: powerapp-web
   name: powerapp-web
 spec:
-  replicas: 3
+  replicas: 3  
+  selector:
+    matchLabels:
+      app: powerapp-web
   template:
     metadata:
       labels:
