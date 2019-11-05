@@ -58,7 +58,7 @@ There are two ways of consuming a ConfigMap:
 2. File in a volume
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
  kind: Deployment
  …
     spec:
