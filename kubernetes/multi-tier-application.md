@@ -14,6 +14,7 @@ If you have a look at `deployments/web-deployment.yaml` you will see that states
 
 ```yaml
 …
+env:
 - name: COMPANY
   valueFrom:
     configMapKeyRef:
