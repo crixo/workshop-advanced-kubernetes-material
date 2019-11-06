@@ -32,7 +32,7 @@ Do the following commands to setup the minikube installation:
 
 1. `minikube start`, this will setup the minikube VM
 2. `minikube ssh` to get into the machine
-3. From inside the machine do `docker pull sighup/powerapp-frontend`, `docker pull sighup/powerapp-backend`, `docker pull mongo:4.1.5-xenial`
+3. From inside the machine run the file [download_workshop_images.sh](https://github.com/sighupio/workshop-advanced-kubernetes/blob/master/kubernetes/download_workshop_images.sh)
 4. Stop minikube without destroying it with `minikube stop`
 
 If you don't know what those commands are for or how they work specifically, do not worry. We will review them during the workshop.
